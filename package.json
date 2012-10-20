@@ -1,6 +1,6 @@
 {
   "name": "twitter-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "pump results from the twitter filter stream into stdout",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,9 @@
     "cli",
     "commandline"
   ],
+  "bin": {
+    "twitter": "index.js"
+  },
   "author": "Elijah Insua <tmpvar@gmail.com>",
   "license": "MIT",
   "dependencies": {

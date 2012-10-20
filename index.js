@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var
   fs = require('fs'),
   path = require('path'),
@@ -5,6 +7,11 @@ var
   argv = require('optimist').argv,
   request = require('request'),
   es = require('event-stream');
+
+if (!argv.filter) {
+  console.log('usage: twitter --filter="#hash,#tags" --regex="something"');
+  process.exit();
+}
 
 fs.readFile(file, function(e, d) {
   if (e) {
@@ -44,10 +51,11 @@ fs.readFile(file, function(e, d) {
         if (matches) {
           callback(null, matches[0] + '\n');
         }
-      } else {
+      } else if (out) {
         callback(null, out);
+      } else {
+        callback();
       }
-
     }),
     process.stdout
   );
